@@ -62,6 +62,52 @@ final class PayWallViewController: UIViewController {
         return label
     }()
     
+    private var tapLessLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tap less."
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private var winMoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Win more."
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private var automateAnythingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Automate anything."
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let messagesStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 14
+        stack.alignment = .center
+        stack.distribution = .equalCentering
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -81,7 +127,10 @@ final class PayWallViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(tupImageView)
         view.addSubview(fullControlLabel)
-
+        view.addSubview(messagesStackView)
+        messagesStackView.addArrangedSubview(tapLessLabel)
+        messagesStackView.addArrangedSubview(winMoreLabel)
+        messagesStackView.addArrangedSubview(automateAnythingLabel)
     }
     
     private func setupConstraints() {
@@ -93,11 +142,17 @@ final class PayWallViewController: UIViewController {
             tupImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tupImageView.widthAnchor.constraint(equalToConstant: 88),
             tupImageView.heightAnchor.constraint(equalToConstant: 118),
-
+            
             fullControlLabel.topAnchor.constraint(equalTo: tupImageView.bottomAnchor, constant: 48),
             fullControlLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             fullControlLabel.widthAnchor.constraint(equalToConstant: 294),
             fullControlLabel.heightAnchor.constraint(equalToConstant: 68),
+            
+            messagesStackView.topAnchor.constraint(equalTo: fullControlLabel.bottomAnchor, constant: 8),
+            messagesStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            messagesStackView.widthAnchor.constraint(equalToConstant: 294),
+            messagesStackView.heightAnchor.constraint(equalToConstant: 20),
+            
         ])
     }
 }
