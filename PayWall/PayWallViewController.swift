@@ -20,6 +20,16 @@ final class PayWallViewController: UIViewController {
         return layer
     }()
     
+    private let closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let config = UIImage.SymbolConfiguration(pointSize: 19, weight: .bold)
+        let image = UIImage(systemName: "xmark", withConfiguration: config)
+        button.setImage(image, for: .normal)
+        button.tintColor = .gray
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -36,12 +46,14 @@ final class PayWallViewController: UIViewController {
     }
     
     private func setupViews() {
-        
+        view.addSubview(closeButton)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+
         ])
     }
 }
