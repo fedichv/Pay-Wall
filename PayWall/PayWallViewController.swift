@@ -29,6 +29,12 @@ final class PayWallViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    private let tupImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "tup")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +53,18 @@ final class PayWallViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(closeButton)
+        view.addSubview(tupImageView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            tupImageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 14),
+            tupImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tupImageView.widthAnchor.constraint(equalToConstant: 88),
+            tupImageView.heightAnchor.constraint(equalToConstant: 118),
 
         ])
     }
