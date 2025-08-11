@@ -29,11 +29,37 @@ final class PayWallViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     private let tupImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "tup")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+    
+    private let fullControlLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let text = "Unlock Full Control\n with AutoClicker Pro"
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = 34
+        paragraphStyle.maximumLineHeight = 34
+        paragraphStyle.alignment = .center
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 28, weight: .bold),
+            .foregroundColor: UIColor.white,
+            .kern: 0.38,
+            .paragraphStyle: paragraphStyle
+        ]
+        
+        label.attributedText = NSAttributedString(string: text, attributes: attributes)
+        
+        return label
     }()
     
     override func viewDidLoad() {
@@ -54,6 +80,8 @@ final class PayWallViewController: UIViewController {
     private func setupViews() {
         view.addSubview(closeButton)
         view.addSubview(tupImageView)
+        view.addSubview(fullControlLabel)
+
     }
     
     private func setupConstraints() {
@@ -66,6 +94,10 @@ final class PayWallViewController: UIViewController {
             tupImageView.widthAnchor.constraint(equalToConstant: 88),
             tupImageView.heightAnchor.constraint(equalToConstant: 118),
 
+            fullControlLabel.topAnchor.constraint(equalTo: tupImageView.bottomAnchor, constant: 48),
+            fullControlLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            fullControlLabel.widthAnchor.constraint(equalToConstant: 294),
+            fullControlLabel.heightAnchor.constraint(equalToConstant: 68),
         ])
     }
 }
