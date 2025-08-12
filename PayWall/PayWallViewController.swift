@@ -16,7 +16,7 @@ final class PayWallViewController: UIViewController {
             UIColor.filing.cgColor,
         ]
         layer.startPoint = CGPoint(x: 0.5, y: 0)
-        layer.endPoint = CGPoint(x: 0.5, y: 2)
+        layer.endPoint = CGPoint(x: 0.5, y: 1)
         return layer
     }()
     
@@ -43,7 +43,7 @@ final class PayWallViewController: UIViewController {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        let text = "Unlock Full Control\n with AutoClicker Pro"
+        let text = "Unlock Full Control\nwith AutoClicker Pro"
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 34
@@ -73,7 +73,7 @@ final class PayWallViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private var winMoreLabel: UILabel = {
         let label = UILabel()
         label.text = "Win more."
@@ -85,7 +85,7 @@ final class PayWallViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private var automateAnythingLabel: UILabel = {
         let label = UILabel()
         label.text = "Automate anything."
@@ -108,6 +108,27 @@ final class PayWallViewController: UIViewController {
         return stack
     }()
     
+    private let featureStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 8
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let features: [(String, String)] = [
+            ("No limits", "Tap as much as you want"),
+            ("Place multiple tap points on any screen", " "),
+            ("Save setups and load them instantly", " "),
+            ("Fast & accurate", "Works even on tricky buttons"),
+            ("Use it anywhere", "Games, apps, or web tools")
+        ]
+        
+        for (title, subtitle) in features {
+            let featureView = FeatureItemView(title: title, subtitle: subtitle)
+            stack.addArrangedSubview(featureView)
+        }
+        return stack
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -119,6 +140,7 @@ final class PayWallViewController: UIViewController {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = view.bounds
     }
+    
     private func configure() {
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -128,6 +150,8 @@ final class PayWallViewController: UIViewController {
         view.addSubview(tupImageView)
         view.addSubview(fullControlLabel)
         view.addSubview(messagesStackView)
+        view.addSubview(featureStack)
+        
         messagesStackView.addArrangedSubview(tapLessLabel)
         messagesStackView.addArrangedSubview(winMoreLabel)
         messagesStackView.addArrangedSubview(automateAnythingLabel)
@@ -153,6 +177,8 @@ final class PayWallViewController: UIViewController {
             messagesStackView.widthAnchor.constraint(equalToConstant: 294),
             messagesStackView.heightAnchor.constraint(equalToConstant: 20),
             
+            featureStack.topAnchor.constraint(equalTo: messagesStackView.bottomAnchor, constant: 36),
+            featureStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
 }
