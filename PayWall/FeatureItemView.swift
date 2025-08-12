@@ -50,8 +50,8 @@ final class FeatureItemView: UIView {
         subtitleLabel.text = subtitle
         
         textStack.axis = .horizontal
-        textStack.spacing = subtitle.isEmpty ? 0 : 4
-        textStack.alignment = .center
+        textStack.spacing = subtitle.isEmpty ? 0 : 2
+        textStack.alignment = .leading
         textStack.distribution = .fill
         textStack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -62,7 +62,7 @@ final class FeatureItemView: UIView {
         
         hStack.axis = .horizontal
         hStack.spacing = 8
-        hStack.alignment = .center
+        hStack.alignment = .bottom
         hStack.translatesAutoresizingMaskIntoConstraints = false
         
         hStack.addArrangedSubview(iconImageView)
